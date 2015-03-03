@@ -49,6 +49,7 @@ Although in the global scope, it is not available until after the `deviceready` 
 ## Methods
 
 - navigator.globalization.getPreferredLanguage
+- navigator.globalization.getTimeZone
 - navigator.globalization.getLocaleName
 - navigator.globalization.dateToString
 - navigator.globalization.stringToDate
@@ -115,6 +116,36 @@ not determined by the unrelated "Country/Region" setting on Windows Phone.
 - Returns the ISO 639-1 two-letter language code and ISO 3166-1 country code
 of the regional variant corresponding to the "Language" setting, separated by
 a hyphen.
+
+## navigator.globalization.getTimeZone
+
+Returns the BCP 47 compliant tag for the client's current local time zone setting.
+
+    navigator.globalization.getTimeZone(successCallback, errorCallback);
+
+### Description
+
+Returns the BCP 47 compliant local time zone identifier string to the `successCallback`
+with a `properties` object as a parameter. That object should have a `value`
+property with a `String` value. The local time zone tag will consist of a 'continent/city'
+
+If there is an error getting the locale, then the `errorCallback`
+executes with a `GlobalizationError` object as a parameter. The
+error's expected code is `GlobalizationError.UNKNOWN_ERROR`.
+
+### Supported Platforms
+
+- iOS
+
+### Example
+
+When the browser is set to the `America/New_York` time zone, this displays a popup
+dialog with the text `time zone: America/New_York`.
+
+    navigator.globalization.getTimeZone(
+        function (timezone) {alert('time zone: ' + timezone.value + '\n');},
+        function () {alert('Error getting time zone\n');}
+    );
 
 ## navigator.globalization.getLocaleName
 

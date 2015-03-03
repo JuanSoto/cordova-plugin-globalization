@@ -42,6 +42,14 @@ typedef NSUInteger CDVGlobalizationError;
 - (void)getPreferredLanguage:(CDVInvokedUrlCommand*)command;
 
 /**
+ * Returns the string identifier for the clients current local time zone setting.
+ * It returns the local time zone identifier string to the successCB callback with a
+ * properties object as a parameter. If there is an error getting the local time zone,
+ * then the errorCB callback is invoked.
+ */
+- (void)getTimeZoneName:(CDVInvokedUrlCommand*)command;
+
+/**
  * Returns the string identifier for the clients current locale setting.
  * It returns the locale identifier string to the successCB callback with a
  * properties object as a parameter. If there is an error getting the locale,

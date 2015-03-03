@@ -71,6 +71,29 @@
     [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
 }
 
+- (void)getTimeZoneName:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* result = nil;
+    NSDictionary* dictionary = nil;
+    
+    NSTimeZone *timeZone = [NSTimeZone localTimeZone];
+    
+    if (timeZone) {
+        NSString *tzName = [timeZone name];
+
+        dictionary = [NSDictionary dictionaryWithObject:tzName forKey:@"value"];
+
+        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
+    } else {
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithCapacity:2];
+        [dictionary setValue:[NSNumber numberWithInt:CDV_UNKNOWN_ERROR] forKey:@"code"];
+        [dictionary setValue:@"Unknown error" forKey:@"message"];
+        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
+    }
+
+    [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
+}
+
 - (void)getLocaleName:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* result = nil;
