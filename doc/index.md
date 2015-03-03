@@ -40,7 +40,7 @@ Although in the global scope, it is not available until after the `deviceready` 
 
 ## Installation
 
-    cordova plugin add org.apache.cordova.globalization
+    cordova plugin add https://github.com/JuanSoto/cordova-plugin-globalization.git
 
 ## Objects
 
